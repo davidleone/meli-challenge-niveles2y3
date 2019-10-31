@@ -2,6 +2,9 @@
 
 namespace ChallengeMeLiServices.Services.Interfaces
 {
+    /// <summary>
+    /// Interface of Mutant Service.
+    /// </summary>
     public interface IMutantService
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
@@ -27,20 +28,38 @@ namespace ChallengeMeLiServices.Web.Controllers
             _autoMapper = AutoMapperWeb.GetMapper();
             _mutantService = mutantService;
         }
-        
+
+        /// <summary>
+        /// POST, Detects if a human is a mutant verifying its dna chain.
+        /// </summary>
+        /// <param name="humanDto">JSON of a human, with a valid dna chain</param>
+        /// <returns>200 if it's a mutant | 403 if it's not a mutant | 400 if there are some invalid argument | 500 if there are some not controlled exception</returns>
         [HttpPost, Route]
-        public HttpResponseMessage Post([FromBody] HumanV1Dto dnaDto)
+        public HttpResponseMessage Post([FromBody] HumanV1Dto humanDto)
         {
-            Human dnaEntity = _autoMapper.Map<Human>(dnaDto);
+            HttpResponseMessage response = new HttpResponseMessage();
             try
             {
-                bool isMutant = _mutantService.IsMutant(dnaEntity);
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                Human human = _autoMapper.Map<Human>(humanDto);
+                bool isMutant = _mutantService.IsMutant(human);
+                if (isMutant)
+                {
+                    response.StatusCode = HttpStatusCode.OK;
+                }
+                else
+                {
+                    response.StatusCode = HttpStatusCode.Forbidden;
+                }
             }
-            catch
+            catch (ArgumentException)
             {
-                return new HttpResponseMessage(HttpStatusCode.Forbidden);
+                response.StatusCode = HttpStatusCode.BadRequest;
             }
+            catch (Exception)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+            }
+            return response;
         }
     }
 }

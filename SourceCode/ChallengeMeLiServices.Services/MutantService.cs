@@ -6,7 +6,9 @@ using ChallengeMeLiServices.Services.Models;
 
 namespace ChallengeMeLiServices.Services
 {
-
+    /// <summary>
+    /// Service of Mutants.
+    /// </summary>
     public class MutantService : IMutantService
     {
         /// <summary>
