@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using ChallengeMeLiServices.Services.Exceptions;
 using ChallengeMeLiServices.Services.Interfaces;
 using ChallengeMeLiServices.Services.Models;
 
@@ -18,18 +20,21 @@ namespace ChallengeMeLiServices.Services
         private readonly char[] k_ValidLetters = { 'A', 'a', 'T', 't', 'C', 'c', 'G', 'g' };
 
         /// <summary>
-        /// Detects a mutant through its dna chain.
+        /// Detects if a human is a mutant through its dna chain.
         /// </summary>
-        /// <exception cref="DnaInvalidException">Thrown when dna chain is not valid.</exception>
-        /// <param name="dna">Dna chain.</param>
+        /// <exception cref="ArgumentNullException">Thrown when human parameter is null</exception>
+        /// <exception cref="DnaInvalidException">Thrown when dna chain is not valid</exception>
+        /// <param name="human">Human being with a Dna chain</param>
         /// <returns>True if it's mutant; false if not.</returns>
         public bool IsMutant(Human human)
         {
             //pre-conditions
             if (human == null)
             {
-                throw new ArgumentNullException(;
+                throw new ArgumentNullException(nameof(human));
             }
+
+            string[] dna = human.Dna;
 
             //first at all, I have to validate the dna
             if (IsDnaValid(dna))
@@ -66,42 +71,24 @@ namespace ChallengeMeLiServices.Services
         /// <summary>
         /// This method validates the dna chain. To be valid it cannot be null or empty, it cannot has nulls or empty strings
         /// as members, it must be a NxN table and it must only contains valid letters.
+        /// Note that: to simplify this challenges (level 2 and 3) I will handle only 1 kind of exception with a unique message.
         /// </summary>
         /// <exception cref="DnaInvalidException">Thrown when dna chain is not valid.</exception>
         /// <param name="dna">Dna chain.</param>
         /// <returns>True if dna is valid; ArgumentException if it's invalid.</returns>
         public bool IsDnaValid(string[] dna)
         {
-            //dna cannot be null
-            if (dna == null)
+            //dna cannot be null or empty
+            if (dna == null || dna.Length == 0)
             {
-                throw new DnaInvalidException(ErrorMessages.k_DnaCannotBeNull);
+                throw new DnaInvalidException();
             }
-
-            //dna cannot be empty
-            if (dna.Length == 0)
-            {
-                throw new DnaInvalidException(ErrorMessages.k_DnaCannotBeEmpty);
-            }
-
             foreach (string line in dna)
             {
-                //dna cannot has nulls or empty strings as members
-                if (String.IsNullOrWhiteSpace(line))
+                //dna cannot has nulls or empty strings as members, and it must be a NxN table, and it must only contains letters A,T,C,G
+                if (String.IsNullOrWhiteSpace(line) || line.Length != dna.Length || !line.All(x => k_ValidLetters.Contains(x)))
                 {
-                    throw new DnaInvalidException(ErrorMessages.k_DnaCannotHasNullsOrEmpty);
-                }
-
-                //dna must be a NxN table
-                if (line.Length != dna.Length)
-                {
-                    throw new DnaInvalidException(ErrorMessages.k_DnaMustBeNxN);
-                }
-
-                //dna must only contains letters A,T,C,G
-                if (!line.All(x => k_ValidLetters.Contains(x)))
-                {
-                    throw new DnaInvalidException(ErrorMessages.k_DnaMustContainsValidLetters);
+                    throw new DnaInvalidException();
                 }
             }
 

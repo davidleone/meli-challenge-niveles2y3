@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\DnaInvalidException.cs" />
     <Compile Include="Interfaces\IMutantService.cs" />
     <Compile Include="Models\Human.cs" />
     <Compile Include="MutantService.cs" />

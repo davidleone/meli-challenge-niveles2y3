@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Web",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Web.Tests", "ChallengeMeLiServices.Web.Tests\ChallengeMeLiServices.Web.Tests.csproj", "{3BB09E7D-2423-4F1C-AC7A-4E4DBFD9765E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{209F465B-86C0-41DF-A454-237D90E0B257}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Services.Tests", "ChallengeMeLiServices.Services.Tests\ChallengeMeLiServices.Services.Tests.csproj", "{4E274439-071C-4B57-ACF2-312B61463060}"
 EndProject
 Global
@@ -38,9 +36,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{3BB09E7D-2423-4F1C-AC7A-4E4DBFD9765E} = {209F465B-86C0-41DF-A454-237D90E0B257}
-		{4E274439-071C-4B57-ACF2-312B61463060} = {209F465B-86C0-41DF-A454-237D90E0B257}
 	EndGlobalSection
 EndGlobal
