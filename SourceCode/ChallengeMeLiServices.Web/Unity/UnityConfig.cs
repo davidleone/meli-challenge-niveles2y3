@@ -35,6 +35,7 @@ namespace ChallengeMeLiServices.Web.Unity
         private static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IMutantService, MutantService>();
+            container.RegisterType<IStatsService, StatsService>();
         }
     }
 }
