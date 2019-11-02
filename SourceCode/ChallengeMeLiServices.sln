@@ -4,12 +4,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Services", "ChallengeMeLiServices.Services\ChallengeMeLiServices.Services.csproj", "{1CD3A288-279D-431E-AD83-C1C51483760E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B5460FE9-07EC-46DB-A772-56A00938DA53} = {B5460FE9-07EC-46DB-A772-56A00938DA53}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Web", "ChallengeMeLiServices.Web\ChallengeMeLiServices.Web.csproj", "{9D703942-97A5-40E5-B976-0D2412AE8520}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Web.Tests", "ChallengeMeLiServices.Web.Tests\ChallengeMeLiServices.Web.Tests.csproj", "{3BB09E7D-2423-4F1C-AC7A-4E4DBFD9765E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Services.Tests", "ChallengeMeLiServices.Services.Tests\ChallengeMeLiServices.Services.Tests.csproj", "{4E274439-071C-4B57-ACF2-312B61463060}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1CD3A288-279D-431E-AD83-C1C51483760E} = {1CD3A288-279D-431E-AD83-C1C51483760E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.DataAccess", "ChallengeMeLiServices.DataAccess\ChallengeMeLiServices.DataAccess.csproj", "{B5460FE9-07EC-46DB-A772-56A00938DA53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +41,15 @@ Global
 		{4E274439-071C-4B57-ACF2-312B61463060}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E274439-071C-4B57-ACF2-312B61463060}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E274439-071C-4B57-ACF2-312B61463060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5460FE9-07EC-46DB-A772-56A00938DA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5460FE9-07EC-46DB-A772-56A00938DA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5460FE9-07EC-46DB-A772-56A00938DA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5460FE9-07EC-46DB-A772-56A00938DA53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9138F8E2-EF26-42C9-9BDE-9A5886903AA6}
 	EndGlobalSection
 EndGlobal

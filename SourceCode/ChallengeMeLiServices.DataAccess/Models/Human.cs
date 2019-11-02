@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChallengeMeLiServices.Services.Models
+namespace ChallengeMeLiServices.DataAccess.Models
 {
     /// <summary>
     /// Human Entity.

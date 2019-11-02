@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ChallengeMeLiServices.Services.Models;
+using ChallengeMeLiServices.DataAccess.Models;
 using ChallengeMeLiServices.Web.Models;
 
 namespace ChallengeMeLiServices.Web.AutoMapper

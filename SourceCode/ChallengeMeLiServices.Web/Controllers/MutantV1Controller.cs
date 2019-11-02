@@ -3,8 +3,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+using ChallengeMeLiServices.DataAccess.Models;
 using ChallengeMeLiServices.Services.Interfaces;
-using ChallengeMeLiServices.Services.Models;
 using ChallengeMeLiServices.Web.AutoMapper;
 using ChallengeMeLiServices.Web.Models;
 

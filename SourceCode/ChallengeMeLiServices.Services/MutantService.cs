@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using ChallengeMeLiServices.DataAccess.Models;
 using ChallengeMeLiServices.Services.Exceptions;
 using ChallengeMeLiServices.Services.Interfaces;
-using ChallengeMeLiServices.Services.Models;
 
 namespace ChallengeMeLiServices.Services
 {

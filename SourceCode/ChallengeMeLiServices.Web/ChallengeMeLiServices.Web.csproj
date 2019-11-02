@@ -145,6 +145,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChallengeMeLiServices.DataAccess\ChallengeMeLiServices.DataAccess.csproj">
+      <Project>{B5460FE9-07EC-46DB-A772-56A00938DA53}</Project>
+      <Name>ChallengeMeLiServices.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChallengeMeLiServices.Services\ChallengeMeLiServices.Services.csproj">
       <Project>{1cd3a288-279d-431e-ad83-c1c51483760e}</Project>
       <Name>ChallengeMeLiServices.Services</Name>

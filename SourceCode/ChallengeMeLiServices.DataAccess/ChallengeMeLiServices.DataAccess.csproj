@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1CD3A288-279D-431E-AD83-C1C51483760E}</ProjectGuid>
+    <ProjectGuid>{B5460FE9-07EC-46DB-A772-56A00938DA53}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChallengeMeLiServices.Services</RootNamespace>
-    <AssemblyName>ChallengeMeLiServices.Services</AssemblyName>
+    <RootNamespace>ChallengeMeLiServices.DataAccess</RootNamespace>
+    <AssemblyName>ChallengeMeLiServices.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,18 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\DnaInvalidException.cs" />
-    <Compile Include="Interfaces\IMutantService.cs" />
-    <Compile Include="Interfaces\IStatsService.cs" />
-    <Compile Include="MutantService.cs" />
+    <Compile Include="Models\Human.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatsService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ChallengeMeLiServices.DataAccess\ChallengeMeLiServices.DataAccess.csproj">
-      <Project>{B5460FE9-07EC-46DB-A772-56A00938DA53}</Project>
-      <Name>ChallengeMeLiServices.DataAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

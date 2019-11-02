@@ -1,4 +1,4 @@
-﻿using ChallengeMeLiServices.Services.Models;
+﻿using ChallengeMeLiServices.DataAccess.Models;
 
 namespace ChallengeMeLiServices.Services.Interfaces
 {
