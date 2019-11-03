@@ -1,4 +1,8 @@
-﻿using ChallengeMeLiServices.Services;
+﻿using ChallengeMeLiServices.DataAccess.Daos;
+using ChallengeMeLiServices.DataAccess.Daos.Interfaces;
+using ChallengeMeLiServices.DataAccess.Repositories;
+using ChallengeMeLiServices.DataAccess.Repositories.Interfaces;
+using ChallengeMeLiServices.Services;
 using ChallengeMeLiServices.Services.Interfaces;
 using Unity;
 
@@ -36,6 +40,9 @@ namespace ChallengeMeLiServices.Web.Unity
         {
             container.RegisterType<IMutantService, MutantService>();
             container.RegisterType<IStatsService, StatsService>();
+
+            container.RegisterType<IDnaDao, DnaDao>();
+            container.RegisterType<IDnaRepository, DnaRepository>();
         }
     }
 }
