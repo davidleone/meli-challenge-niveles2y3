@@ -43,21 +43,10 @@ namespace ChallengeMeLiServices.Services
 
             return await Task.Run(() =>
             {
-                ISession session = SessionManager.GetSession();
-                Dna result = null;
-                try
+                using (ISession session = SessionManager.GetSession())
                 {
-                    using (ITransaction tx = session.BeginTransaction())
-                    {
-                        result = _dnaRepository.GetByChainString(session, chainString);
-                        tx.Commit();
-                    }
+                    return _dnaRepository.GetByChainString(session, chainString);
                 }
-                finally
-                {
-                    SessionManager.CloseSession();
-                }
-                return result;
             });
         }
 
@@ -82,8 +71,7 @@ namespace ChallengeMeLiServices.Services
 
             await Task.Run(() =>
             {
-                ISession session = SessionManager.GetSession();
-                try
+                using (ISession session = SessionManager.GetSession())
                 {
                     using (ITransaction tx = session.BeginTransaction())
                     {
@@ -96,10 +84,6 @@ namespace ChallengeMeLiServices.Services
                         tx.Commit();
                     }
                 }
-                finally
-                {
-                    SessionManager.CloseSession();
-                }
             });
         }
 
@@ -109,25 +93,13 @@ namespace ChallengeMeLiServices.Services
         /// <returns>Count of Mutants</returns>
         public async Task<int> GetMutantsCountAsync()
         {
-            int result = 0;
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
-                ISession session = SessionManager.GetSession();
-                try
+                using (ISession session = SessionManager.GetSession())
                 {
-                    using (ITransaction tx = session.BeginTransaction())
-                    {
-                        result = _dnaRepository.GetMutantsCount(session);
-                        tx.Commit();
-                    }
-                }
-                finally
-                {
-                    SessionManager.CloseSession();
+                    return _dnaRepository.GetMutantsCount(session);
                 }
             });
-
-            return result;
         }
 
         /// <summary>
@@ -136,25 +108,13 @@ namespace ChallengeMeLiServices.Services
         /// <returns>Count of Humans</returns>
         public async Task<int> GetHumansCountAsync()
         {
-            int result = 0;
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
-                ISession session = SessionManager.GetSession();
-                try
+                using (ISession session = SessionManager.GetSession())
                 {
-                    using (ITransaction tx = session.BeginTransaction())
-                    {
-                        result = _dnaRepository.GetHumansCount(session);
-                        tx.Commit();
-                    }
-                }
-                finally
-                {
-                    SessionManager.CloseSession();
+                    return _dnaRepository.GetHumansCount(session);
                 }
             });
-
-            return result;
         }
     }
 }

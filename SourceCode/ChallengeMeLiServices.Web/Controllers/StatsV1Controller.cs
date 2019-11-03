@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using ChallengeMeLiServices.DataAccess.Models;
@@ -29,6 +27,10 @@ namespace ChallengeMeLiServices.Web.Controllers
             _statsService = statsService;
         }
 
+        /// <summary>
+        /// GET, returns stats between verified mutants and humans.
+        /// </summary>
+        /// <returns>Dna stats.</returns>
         [HttpGet, Route]
         public async Task<DnaStatsV1Dto> GetDnaStatsAsync()
         {

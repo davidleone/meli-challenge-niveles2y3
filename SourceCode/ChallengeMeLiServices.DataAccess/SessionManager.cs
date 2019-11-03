@@ -8,20 +8,12 @@ namespace ChallengeMeLiServices.DataAccess
     /// <summary>
     /// Static class to hold the Database Connection.
     /// </summary>
-    public static class SessionManager
+    public class SessionManager
     {
-        private static ISessionFactory _sessionFactory;
-        private static ISession _session;
-
         /// <summary>
-        /// Private method to initialize the FluentNHibernate configuration against the database.
+        /// NHibernate Session Factory
         /// </summary>
-        private static void Configure() {
-            if (_sessionFactory == null)
-            {
-                _sessionFactory = FluentConfiguration();
-            }
-        }
+        private static ISessionFactory _sessionFactory;
 
         /// <summary>
         /// Get an Opened Session. CloseSession() method must be called after this one.
@@ -29,27 +21,10 @@ namespace ChallengeMeLiServices.DataAccess
         /// <returns>NHibernate opened ISession</returns>
         public static ISession GetSession()
         {
-            Configure();
+            if (_sessionFactory == null)
+                _sessionFactory = FluentConfiguration();
 
-            if (_session == null || (_session != null && _session.IsOpen))
-            {
-                _session = _sessionFactory.OpenSession();
-            }
-
-            return _session;
-        }
-
-        /// <summary>
-        /// Close the current opened session.
-        /// </summary>
-        public static void CloseSession()
-        {
-            if (_session != null && _session.IsOpen)
-            {
-                _session.Close();
-                _session.Dispose();
-                _session = null;
-            }
+            return _sessionFactory.OpenSession();
         }
 
         /// <summary>

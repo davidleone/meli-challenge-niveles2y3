@@ -29,21 +29,24 @@ namespace ChallengeMeLiServices.Services
         /// <returns>DNA stats</returns>
         public async Task<DnaStats> GetDnaStatsAsync()
         {
-            //TODO: ver de hacerlos en paralelo
-            int mutants = await _dnaService.GetMutantsCountAsync();
-            int humans = await _dnaService.GetHumansCountAsync();
+            //I made both calls in parallel
+            Task<int> mutantsTask = _dnaService.GetMutantsCountAsync();
+            Task<int> humansTask = _dnaService.GetHumansCountAsync();
+
+            //then, I await the results and set the ratio
+            int mutants = await mutantsTask;
+            int humans = await humansTask;
             decimal ratio = mutants;
             if (humans > 0)
                 ratio /= humans;
 
-            DnaStats dnaStats = new DnaStats()
+            //finally, I return the results
+            return new DnaStats()
             {
                 CountMutantDna = mutants,
                 CountHumanDna = humans,
                 Ratio = ratio
             };
-
-            return dnaStats;
         }
     }
 }

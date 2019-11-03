@@ -96,7 +96,7 @@ namespace ChallengeMeLiServices.Services
                         }
                     }
 
-                    //TODO: grabar resultado en la base
+                    //I save in database the verified DNA
                     await _dnaService.SaveVerifiedDnaAsync(dna, isMutant);
                 }
             }
