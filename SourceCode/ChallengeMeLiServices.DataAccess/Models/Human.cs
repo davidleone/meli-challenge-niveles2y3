@@ -1,17 +1,10 @@
-﻿using System;
-
-namespace ChallengeMeLiServices.DataAccess.Models
+﻿namespace ChallengeMeLiServices.DataAccess.Models
 {
     /// <summary>
     /// Human Entity.
     /// </summary>
     public class Human
     {
-        /// <summary>
-        /// Unique human ID.
-        /// </summary>
-        public virtual Guid Id { get; set; }
-
         /// <summary>
         /// Dna chain.
         /// </summary>

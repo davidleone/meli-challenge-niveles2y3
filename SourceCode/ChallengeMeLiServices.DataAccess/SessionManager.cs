@@ -5,11 +5,17 @@ using NHibernate;
 
 namespace ChallengeMeLiServices.DataAccess
 {
+    /// <summary>
+    /// Static class to hold the Database Connection.
+    /// </summary>
     public static class SessionManager
     {
         private static ISessionFactory _sessionFactory;
         private static ISession _session;
 
+        /// <summary>
+        /// Private method to initialize the FluentNHibernate configuration against the database.
+        /// </summary>
         private static void Configure() {
             if (_sessionFactory == null)
             {
@@ -17,6 +23,10 @@ namespace ChallengeMeLiServices.DataAccess
             }
         }
 
+        /// <summary>
+        /// Get an Opened Session. CloseSession() method must be called after this one.
+        /// </summary>
+        /// <returns>NHibernate opened ISession</returns>
         public static ISession GetSession()
         {
             Configure();
@@ -29,6 +39,9 @@ namespace ChallengeMeLiServices.DataAccess
             return _session;
         }
 
+        /// <summary>
+        /// Close the current opened session.
+        /// </summary>
         public static void CloseSession()
         {
             if (_session != null && _session.IsOpen)
@@ -40,8 +53,9 @@ namespace ChallengeMeLiServices.DataAccess
         }
 
         /// <summary>
-        /// Método que crea la session factory
+        /// Private method to configure the string connection to database and the mappings by FluentNHibernate.
         /// </summary>
+        /// <returns></returns>
         private static ISessionFactory FluentConfiguration()
         {
             return Fluently
@@ -55,17 +69,6 @@ namespace ChallengeMeLiServices.DataAccess
                     ).Dialect<NHibernate.Dialect.PostgreSQL82Dialect>())
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<DnaMap>())
                 .BuildSessionFactory();
-            /*return Fluently
-                .Configure()
-                .Database(PostgreSQLConfiguration.PostgreSQL82.ConnectionString(x => x
-                    .Host("localhost")
-                    .Username("postgres")
-                    .Password("postgres")
-                    .Database("postgres")
-                    .Port(5432)
-                    ).Dialect<NHibernate.Dialect.PostgreSQL82Dialect>())
-                .Mappings(x => x.FluentMappings.AddFromAssemblyOf<DnaMap>())
-                .BuildSessionFactory();*/
         }
     }
 }

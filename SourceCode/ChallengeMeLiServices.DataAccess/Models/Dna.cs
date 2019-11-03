@@ -15,7 +15,7 @@ namespace ChallengeMeLiServices.DataAccess.Models
         /// <summary>
         /// Dna chain (unique key in database).
         /// </summary>
-        public virtual string[] Chain { get; set; }
+        public virtual string ChainString { get; set; }
 
         /// <summary>
         /// true: is Mutant | false: is Human.

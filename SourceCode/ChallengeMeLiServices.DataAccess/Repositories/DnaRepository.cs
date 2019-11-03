@@ -7,8 +7,14 @@ using NHibernate;
 
 namespace ChallengeMeLiServices.DataAccess.Repositories
 {
+    /// <summary>
+    /// Repository for DNA.
+    /// </summary>
     public class DnaRepository : IDnaRepository
     {
+        /// <summary>
+        /// DNA Dao.
+        /// </summary>
         private IDnaDao _dao;
 
         /// <summary>
@@ -20,18 +26,39 @@ namespace ChallengeMeLiServices.DataAccess.Repositories
             _dao = dao;
         }
 
-
-        /*public Dna GetById(ISession session, Guid id)
-        {
-            session.Query<Dna>()
-                .Where(x => x.Id == id)
-                .FirstOrDefault(;
-        }*/
-
+        /// <summary>
+        /// Get a list of all saved DNAs.
+        /// </summary>
+        /// <param name="session">NHibernate ISession</param>
+        /// <returns>A list of DNAs</returns>
         public IList<Dna> GetAll(ISession session)
         {
             return _dao.GetAll(session)
                 .ToList();
+        }
+
+        /// <summary>
+        /// Get a specific DNA filtering by chain.
+        /// </summary>
+        /// <param name="session">NHibernate ISession</param>
+        /// <param name="chain">Dna chain formatted in a single line</param>
+        /// <returns>The fetched DNA</returns>
+        public Dna GetByChainString(ISession session, string chain)
+        {
+            return _dao.GetAll(session)
+                .Where(x => x.ChainString.Equals(chain))
+                .ToList()
+                .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Save in database the dna passed by parameter.
+        /// </summary>
+        /// <param name="session">NHibernate ISession</param>
+        /// <param name="dna">DNA to save</param>
+        public void Save(ISession session, Dna dna)
+        {
+            _dao.Save(session, dna);
         }
     }
 }

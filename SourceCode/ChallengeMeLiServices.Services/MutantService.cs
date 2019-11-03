@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using ChallengeMeLiServices.DataAccess.Models;
 using ChallengeMeLiServices.Services.Exceptions;
 using ChallengeMeLiServices.Services.Interfaces;
@@ -22,13 +23,27 @@ namespace ChallengeMeLiServices.Services
         private readonly char[] k_ValidLetters = { 'A', 'a', 'T', 't', 'C', 'c', 'G', 'g' };
 
         /// <summary>
+        /// DNA Service.
+        /// </summary>
+        private IDnaService _dnaService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MutantService"/> class.
+        /// </summary>
+        /// <param name="dnaService">Service of DNA</param>
+        public MutantService(IDnaService dnaService)
+        {
+            _dnaService = dnaService;
+        }
+
+        /// <summary>
         /// Detects if a human is a mutant through its dna chain.
         /// </summary>
         /// <exception cref="ArgumentNullException">Thrown when human parameter is null</exception>
         /// <exception cref="DnaInvalidException">Thrown when dna chain is not valid</exception>
         /// <param name="human">Human being with a Dna chain</param>
         /// <returns>True if it's mutant; false if not.</returns>
-        public bool IsMutant(Human human)
+        public async Task<bool> IsMutantAsync(Human human)
         {
             //pre-conditions
             if (human == null)
@@ -37,37 +52,56 @@ namespace ChallengeMeLiServices.Services
             }
 
             string[] dna = human.Dna;
+            bool isMutant = false;
 
             //first at all, I have to validate the dna
             if (IsDnaValid(dna))
             {
-                //I create my variables once here before the iterations
-                string keyword, horizontal, vertical, diagonalRight, diagonalLeft;
+                Dna savedDna = await _dnaService.GetByChainAsync(dna);
 
-                //then, I iterate the multi array in order to evaluate each position
-                for (int row = 0; row < dna.Length; row++)
+                if (savedDna != null)
                 {
-                    for (int col = 0; col < dna[row].Length; col++)
+                    isMutant = savedDna.IsMutant;
+                }
+                else
+                {
+                    //TODO: meter logica siguiente en un metodo nuevo
+
+                    //I create my variables once here before the iterations
+                    string keyword, horizontal, vertical, diagonalRight, diagonalLeft;
+
+                    //then, I iterate the multi array in order to evaluate each position
+                    for (int row = 0; row < dna.Length; row++)
                     {
-                        //I set the expected word to match
-                        keyword = new String(dna[row][col], k_QuantitySecuence).ToUpper();
+                        if (isMutant)
+                            break;
 
-                        //I get the possible values in the different axis
-                        horizontal = GetHorizontal(dna[row], col);
-                        vertical = GetVertical(dna, row, col);
-                        diagonalRight = GetDiagonalRight(dna, row, col, string.Empty);
-                        diagonalLeft = GetDiagonalLeft(dna, row, col, string.Empty);
-
-                        //finally, if one "axis" match with the keyword, then it's a mutant dna
-                        if (horizontal.Contains(keyword) || vertical.Contains(keyword) || diagonalRight.Contains(keyword) || diagonalLeft.Contains(keyword))
+                        for (int col = 0; col < dna[row].Length; col++)
                         {
-                            return true;
+                            //I set the expected word to match
+                            keyword = new String(dna[row][col], k_QuantitySecuence).ToUpper();
+
+                            //I get the possible values in the different axis
+                            horizontal = GetHorizontal(dna[row], col);
+                            vertical = GetVertical(dna, row, col);
+                            diagonalRight = GetDiagonalRight(dna, row, col, string.Empty);
+                            diagonalLeft = GetDiagonalLeft(dna, row, col, string.Empty);
+
+                            //finally, if one "axis" match with the keyword, then it's a mutant dna
+                            if (horizontal.Contains(keyword) || vertical.Contains(keyword) || diagonalRight.Contains(keyword) || diagonalLeft.Contains(keyword))
+                            {
+                                isMutant = true;
+                                break;
+                            }
                         }
                     }
+
+                    //TODO: grabar resultado en la base
+                    await _dnaService.SaveVerifiedDnaAsync(dna, isMutant);
                 }
             }
 
-            return false;
+            return isMutant;
         }
 
         /// <summary>

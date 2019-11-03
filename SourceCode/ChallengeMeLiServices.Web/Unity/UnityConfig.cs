@@ -43,6 +43,7 @@ namespace ChallengeMeLiServices.Web.Unity
 
             container.RegisterType<IDnaDao, DnaDao>();
             container.RegisterType<IDnaRepository, DnaRepository>();
+            container.RegisterType<IDnaService, DnaService>();
         }
     }
 }

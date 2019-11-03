@@ -19,8 +19,7 @@ namespace ChallengeMeLiServices.Web.AutoMapper
             {
                 cfg.CreateMap<Human, HumanV1Dto>()
                 .ForMember(dto => dto.Version, opts => opts.Ignore())
-                .ReverseMap()
-                .ForMember(ent => ent.Id, opts => opts.Ignore());
+                .ReverseMap();
             });
             return config.CreateMapper();
         }

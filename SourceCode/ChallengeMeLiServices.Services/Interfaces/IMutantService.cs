@@ -1,4 +1,5 @@
-﻿using ChallengeMeLiServices.DataAccess.Models;
+﻿using System.Threading.Tasks;
+using ChallengeMeLiServices.DataAccess.Models;
 
 namespace ChallengeMeLiServices.Services.Interfaces
 {
@@ -14,6 +15,6 @@ namespace ChallengeMeLiServices.Services.Interfaces
         /// <exception cref="DnaInvalidException">Thrown when dna chain is not valid</exception>
         /// <param name="human">Human being with a Dna chain</param>
         /// <returns>True if it's mutant; false if not.</returns>
-        bool IsMutant(Human human);
+        Task<bool> IsMutantAsync(Human human);
     }
 }

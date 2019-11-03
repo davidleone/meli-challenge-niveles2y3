@@ -15,8 +15,8 @@ namespace ChallengeMeLiServices.DataAccess.Maps
         {
             Table("dna");
             Id(x => x.Id, "dna_id");
-            //Map(x => x.Chain, "chain");
-            Map(x => x.IsMutant, "is_mutant");
+            Map(x => x.ChainString, "chain_string").Not.Nullable();
+            Map(x => x.IsMutant, "is_mutant").Not.Nullable();
         }
     }
 }

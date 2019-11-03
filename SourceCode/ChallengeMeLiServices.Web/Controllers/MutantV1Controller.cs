@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using ChallengeMeLiServices.DataAccess.Models;
@@ -35,13 +36,13 @@ namespace ChallengeMeLiServices.Web.Controllers
         /// <param name="humanDto">JSON of a human, with a valid dna chain</param>
         /// <returns>200 if it's a mutant | 403 if it's not a mutant | 400 if there are some invalid argument | 500 if there are some not controlled exception</returns>
         [HttpPost, Route]
-        public HttpResponseMessage Post([FromBody] HumanV1Dto humanDto)
+        public async Task<HttpResponseMessage> PostAsync([FromBody] HumanV1Dto humanDto)
         {
             HttpResponseMessage response = new HttpResponseMessage();
             try
             {
                 Human human = _autoMapper.Map<Human>(humanDto);
-                bool isMutant = _mutantService.IsMutant(human);
+                bool isMutant = await _mutantService.IsMutantAsync(human);
                 if (isMutant)
                 {
                     response.StatusCode = HttpStatusCode.OK;
