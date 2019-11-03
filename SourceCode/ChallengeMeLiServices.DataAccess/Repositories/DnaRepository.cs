@@ -60,5 +60,29 @@ namespace ChallengeMeLiServices.DataAccess.Repositories
         {
             _dao.Save(session, dna);
         }
+
+        /// <summary>
+        /// Get the count of saved Mutants.
+        /// </summary>
+        /// <param name="session">NHibernate Session</param>
+        /// <returns>Count of Mutants</returns>
+        public int GetMutantsCount(ISession session)
+        {
+            return _dao.GetAll(session)
+                .Where(x => x.IsMutant)
+                .Count();
+        }
+
+        /// <summary>
+        /// Get the count of saved Humans.
+        /// </summary>
+        /// <param name="session">NHibernate Session</param>
+        /// <returns>Count of Humans</returns>
+        public int GetHumansCount(ISession session)
+        {
+            return _dao.GetAll(session)
+                .Where(x => !x.IsMutant)
+                .Count();
+        }
     }
 }

@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ChallengeMeLiServices.DataAccess;
+﻿using System.Threading.Tasks;
 using ChallengeMeLiServices.DataAccess.Models;
-using ChallengeMeLiServices.DataAccess.Repositories.Interfaces;
 using ChallengeMeLiServices.Services.Interfaces;
-using NHibernate;
 
 namespace ChallengeMeLiServices.Services
 {
@@ -13,24 +9,41 @@ namespace ChallengeMeLiServices.Services
     /// </summary>
     public class StatsService : IStatsService
     {
-        private IDnaRepository _dnaRepo;
+        /// <summary>
+        /// DNA Service.
+        /// </summary>
+        private IDnaService _dnaService;
 
-        public StatsService(IDnaRepository dnaRepo)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StatsService"/> class.
+        /// </summary>
+        /// <param name="dnaService">Service of DNA</param>
+        public StatsService(IDnaService dnaService)
         {
-            _dnaRepo = dnaRepo;
+            _dnaService = dnaService;
         }
 
-
-        public async Task<IList<Dna>> GetAllAsync()
+        /// <summary>
+        /// Get the stats of Mutants and Humans.
+        /// </summary>
+        /// <returns>DNA stats</returns>
+        public async Task<DnaStats> GetDnaStatsAsync()
         {
-            IList<Dna> result = await Task.Run(() =>
-            {
-                ISession session = SessionManager.GetSession();
-                return _dnaRepo.GetAll(session);
-                
-            });
+            //TODO: ver de hacerlos en paralelo
+            int mutants = await _dnaService.GetMutantsCountAsync();
+            int humans = await _dnaService.GetHumansCountAsync();
+            decimal ratio = mutants;
+            if (humans > 0)
+                ratio /= humans;
 
-            return result;
+            DnaStats dnaStats = new DnaStats()
+            {
+                CountMutantDna = mutants,
+                CountHumanDna = humans,
+                Ratio = ratio
+            };
+
+            return dnaStats;
         }
     }
 }

@@ -30,5 +30,19 @@ namespace ChallengeMeLiServices.DataAccess.Repositories.Interfaces
         /// <param name="session">NHibernate ISession</param>
         /// <param name="dna">DNA to save</param>
         void Save(ISession session, Dna dna);
+
+        /// <summary>
+        /// Get the count of saved Mutants.
+        /// </summary>
+        /// <param name="session">NHibernate Session</param>
+        /// <returns>Count of Mutants</returns>
+        int GetMutantsCount(ISession session);
+
+        /// <summary>
+        /// Get the count of saved Humans.
+        /// </summary>
+        /// <param name="session">NHibernate Session</param>
+        /// <returns>Count of Humans</returns>
+        int GetHumansCount(ISession session);
     }
 }

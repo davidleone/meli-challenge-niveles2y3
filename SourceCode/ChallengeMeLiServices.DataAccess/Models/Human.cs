@@ -1,7 +1,7 @@
 ﻿namespace ChallengeMeLiServices.DataAccess.Models
 {
     /// <summary>
-    /// Human Entity.
+    /// Non-persistable entity. Human Entity.
     /// </summary>
     public class Human
     {

@@ -102,5 +102,59 @@ namespace ChallengeMeLiServices.Services
                 }
             });
         }
+
+        /// <summary>
+        /// Get the count of saved Mutants.
+        /// </summary>
+        /// <returns>Count of Mutants</returns>
+        public async Task<int> GetMutantsCountAsync()
+        {
+            int result = 0;
+            await Task.Run(() =>
+            {
+                ISession session = SessionManager.GetSession();
+                try
+                {
+                    using (ITransaction tx = session.BeginTransaction())
+                    {
+                        result = _dnaRepository.GetMutantsCount(session);
+                        tx.Commit();
+                    }
+                }
+                finally
+                {
+                    SessionManager.CloseSession();
+                }
+            });
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get the count of saved Humans.
+        /// </summary>
+        /// <returns>Count of Humans</returns>
+        public async Task<int> GetHumansCountAsync()
+        {
+            int result = 0;
+            await Task.Run(() =>
+            {
+                ISession session = SessionManager.GetSession();
+                try
+                {
+                    using (ITransaction tx = session.BeginTransaction())
+                    {
+                        result = _dnaRepository.GetHumansCount(session);
+                        tx.Commit();
+                    }
+                }
+                finally
+                {
+                    SessionManager.CloseSession();
+                }
+            });
+
+            return result;
+        }
     }
 }

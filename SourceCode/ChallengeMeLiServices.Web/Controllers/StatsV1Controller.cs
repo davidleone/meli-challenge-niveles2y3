@@ -3,8 +3,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
+using ChallengeMeLiServices.DataAccess.Models;
 using ChallengeMeLiServices.Services.Interfaces;
 using ChallengeMeLiServices.Web.AutoMapper;
+using ChallengeMeLiServices.Web.Models;
 
 namespace ChallengeMeLiServices.Web.Controllers
 {
@@ -28,13 +30,11 @@ namespace ChallengeMeLiServices.Web.Controllers
         }
 
         [HttpGet, Route]
-        public async Task<HttpResponseMessage> GetAllAsync()
+        public async Task<DnaStatsV1Dto> GetDnaStatsAsync()
         {
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-            var aaaaa = await _statsService.GetAllAsync();
-
-
-            return response;
+            DnaStats dnaStats = await _statsService.GetDnaStatsAsync();
+            DnaStatsV1Dto dnaStatsDto = _autoMapper.Map<DnaStatsV1Dto>(dnaStats);
+            return dnaStatsDto;
         }
     }
 }

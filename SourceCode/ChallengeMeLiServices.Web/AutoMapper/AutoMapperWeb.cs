@@ -18,8 +18,10 @@ namespace ChallengeMeLiServices.Web.AutoMapper
             MapperConfiguration config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Human, HumanV1Dto>()
-                .ForMember(dto => dto.Version, opts => opts.Ignore())
-                .ReverseMap();
+                    .ForMember(dto => dto.Version, opts => opts.Ignore())
+                    .ReverseMap();
+                cfg.CreateMap<DnaStats, DnaStatsV1Dto>()
+                    .ReverseMap();
             });
             return config.CreateMapper();
         }

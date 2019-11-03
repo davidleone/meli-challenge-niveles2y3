@@ -9,6 +9,10 @@ namespace ChallengeMeLiServices.Services.Interfaces
     /// </summary>
     public interface IStatsService
     {
-        Task<IList<Dna>> GetAllAsync();
+        /// <summary>
+        /// Get the stats of Mutants and Humans.
+        /// </summary>
+        /// <returns>DNA stats</returns>
+        Task<DnaStats> GetDnaStatsAsync();
     }
 }
