@@ -19,6 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Servi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.DataAccess", "ChallengeMeLiServices.DataAccess\ChallengeMeLiServices.DataAccess.csproj", "{B5460FE9-07EC-46DB-A772-56A00938DA53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.DataAccess.Tests", "ChallengeMeLiServices.DataAccess.Tests\ChallengeMeLiServices.DataAccess.Tests.csproj", "{3CC14060-7150-4517-AC7A-5108456EE801}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B5460FE9-07EC-46DB-A772-56A00938DA53} = {B5460FE9-07EC-46DB-A772-56A00938DA53}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +50,10 @@ Global
 		{B5460FE9-07EC-46DB-A772-56A00938DA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5460FE9-07EC-46DB-A772-56A00938DA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5460FE9-07EC-46DB-A772-56A00938DA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CC14060-7150-4517-AC7A-5108456EE801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CC14060-7150-4517-AC7A-5108456EE801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CC14060-7150-4517-AC7A-5108456EE801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CC14060-7150-4517-AC7A-5108456EE801}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

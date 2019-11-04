@@ -45,5 +45,14 @@ namespace ChallengeMeLiServices.DataAccess
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<DnaMap>())
                 .BuildSessionFactory();
         }
+
+        /// <summary>
+        /// Method specific for Unit Tests purposes. Don't use it!
+        /// </summary>
+        /// <param name="sessionFactory">Session Factory</param>
+        public static void SetMockedSessionForTests(ISessionFactory sessionFactory)
+        {
+            _sessionFactory = sessionFactory;
+        }
     }
 }

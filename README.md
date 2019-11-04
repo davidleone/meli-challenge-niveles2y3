@@ -10,3 +10,4 @@ Repositorio exclusivo para los desafios 2 y 3 del challenge (REST API)
 - FluentNHibernate => para mapeo contra la base
 - Npgsql => para conexión con Postgresql
 - MS.Ext.Caching.Memory => para cache en memoria
+- Moq => para UnitTests
