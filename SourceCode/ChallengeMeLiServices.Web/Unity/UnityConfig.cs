@@ -38,9 +38,9 @@ namespace ChallengeMeLiServices.Web.Unity
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         private static void RegisterTypes(IUnityContainer container)
         {
+            container.RegisterType<IMemoryCacheService, MemoryCacheService>();
             container.RegisterType<IMutantService, MutantService>();
             container.RegisterType<IStatsService, StatsService>();
-
             container.RegisterType<IDnaDao, DnaDao>();
             container.RegisterType<IDnaRepository, DnaRepository>();
             container.RegisterType<IDnaService, DnaService>();

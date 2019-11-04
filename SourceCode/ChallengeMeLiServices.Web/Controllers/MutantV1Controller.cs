@@ -39,6 +39,9 @@ namespace ChallengeMeLiServices.Web.Controllers
         public async Task<HttpResponseMessage> PostAsync([FromBody] HumanV1Dto humanDto)
         {
             HttpResponseMessage response = new HttpResponseMessage();
+
+
+            //TODO: AGREGAR LOGGER!!
             try
             {
                 Human human = _autoMapper.Map<Human>(humanDto);

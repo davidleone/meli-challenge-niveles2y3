@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ChallengeMeLiServices.DataAccess;
 using ChallengeMeLiServices.DataAccess.Models;
@@ -50,7 +51,7 @@ namespace ChallengeMeLiServices.Services
             });
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Save the already verified DNA, at this point we assume that DNA is valid.
         /// </summary>
         /// <param name="chain">Dna chain</param>
@@ -76,10 +77,66 @@ namespace ChallengeMeLiServices.Services
                     using (ITransaction tx = session.BeginTransaction())
                     {
                         //I need to check it again in the transaction to cover concurrency issues
-                        Dna savedDna = _dnaRepository.GetByChainString(session, dnaToSave.ChainString);
+                        Dna savedDna =  _dnaRepository.GetByChainString(session, dnaToSave.ChainString);
                         if (savedDna == null)
                         {
                             _dnaRepository.Save(session, dnaToSave);
+                        }
+                        tx.Commit();
+                    }
+                }
+            });
+        }*/
+
+        /*public async Task SaveAsync(Dna dna)
+        {
+            if (dna == null)
+            {
+                throw new ArgumentException("DNA cannot be null");
+            }
+
+            await Task.Run(() =>
+            {
+                using (ISession session = SessionManager.GetSession())
+                {
+                    using (ITransaction tx = session.BeginTransaction())
+                    {
+                        //I need to check it again in the transaction to cover concurrency issues
+                        Dna savedDna = _dnaRepository.GetByChainString(session, dna.ChainString);
+                        if (savedDna == null)
+                        {
+                            _dnaRepository.Save(session, dna);
+                        }
+                        tx.Commit();
+                    }
+                }
+            });
+        }*/
+
+        public async Task SaveAsync(ICollection<Dna> dnas)
+        {
+            if (dnas == null)
+            {
+                throw new ArgumentException("DNA cannot be null");
+            }
+
+            await Task.Run(() =>
+            {
+                using (ISession session = SessionManager.GetSession())
+                {
+                    using (ITransaction tx = session.BeginTransaction())
+                    {
+
+                        //TODO: I should only persist the entities that don't exist in DB
+
+                        foreach (Dna dna in dnas)
+                        {
+                            //I need to check it again in the transaction to cover concurrency issues
+                            Dna savedDna = _dnaRepository.GetByChainString(session, dna.ChainString);
+                            if (savedDna == null)
+                            {
+                                _dnaRepository.Save(session, dna);
+                            }
                         }
                         tx.Commit();
                     }

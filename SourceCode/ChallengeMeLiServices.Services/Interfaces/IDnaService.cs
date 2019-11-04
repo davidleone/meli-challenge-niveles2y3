@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ChallengeMeLiServices.DataAccess.Models;
 
 namespace ChallengeMeLiServices.Services.Interfaces
@@ -15,13 +16,13 @@ namespace ChallengeMeLiServices.Services.Interfaces
         /// <returns>The fetched DNA</returns>
         Task<Dna> GetByChainAsync(string[] chain);
 
-        /// <summary>
+        /*/// <summary>
         /// Save the already verified DNA, at this point we assume that DNA is valid.
         /// </summary>
         /// <param name="chain">Dna chain</param>
         /// <param name="isMutant">true: is Mutant | false: is Human</param>
         /// <returns>void</returns>
-        Task SaveVerifiedDnaAsync(string[] chain, bool isMutant);
+        Task SaveVerifiedDnaAsync(string[] chain, bool isMutant);*/
 
         /// <summary>
         /// Get the count of saved Mutants.
@@ -34,5 +35,7 @@ namespace ChallengeMeLiServices.Services.Interfaces
         /// </summary>
         /// <returns>Count of Humans</returns>
         Task<int> GetHumansCountAsync();
+
+        Task SaveAsync(ICollection<Dna> dnas);
     }
 }

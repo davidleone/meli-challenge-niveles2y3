@@ -15,12 +15,19 @@ namespace ChallengeMeLiServices.Services
         private IDnaService _dnaService;
 
         /// <summary>
+        /// Memory Cache Service.
+        /// </summary>
+        private IMemoryCacheService _memoryCacheService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="StatsService"/> class.
         /// </summary>
         /// <param name="dnaService">Service of DNA</param>
-        public StatsService(IDnaService dnaService)
+        /// <param name="memoryCacheService">Service for Memory Cache</param>
+        public StatsService(IDnaService dnaService, IMemoryCacheService memoryCacheService)
         {
             _dnaService = dnaService;
+            _memoryCacheService = memoryCacheService;
         }
 
         /// <summary>
@@ -29,9 +36,11 @@ namespace ChallengeMeLiServices.Services
         /// <returns>DNA stats</returns>
         public async Task<DnaStats> GetDnaStatsAsync()
         {
-            //I made both calls in parallel
-            Task<int> mutantsTask = _dnaService.GetMutantsCountAsync();
-            Task<int> humansTask = _dnaService.GetHumansCountAsync();
+            //I made both calls in parallel, using memory cache
+            //Task<int> mutantsTask = _memoryCacheService.GetAsync("mutantsCount", async () => await _dnaService.GetMutantsCountAsync());
+            //Task<int> humansTask = _memoryCacheService.GetAsync("humansCount", async () => await _dnaService.GetHumansCountAsync());
+            Task<int> mutantsTask = _memoryCacheService.GetAsync("mutantsCount", () => _dnaService.GetMutantsCountAsync());
+            Task<int> humansTask = _memoryCacheService.GetAsync("humansCount", () => _dnaService.GetHumansCountAsync());
 
             //then, I await the results and set the ratio
             int mutants = await mutantsTask;

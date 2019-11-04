@@ -9,3 +9,4 @@ Repositorio exclusivo para los desafios 2 y 3 del challenge (REST API)
 - NHibernate => ORM para persistencia
 - FluentNHibernate => para mapeo contra la base
 - Npgsql => para conexión con Postgresql
+- MS.Ext.Caching.Memory => para cache en memoria
