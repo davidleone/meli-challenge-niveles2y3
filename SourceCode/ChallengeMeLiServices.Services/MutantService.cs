@@ -51,7 +51,7 @@ namespace ChallengeMeLiServices.Services
         /// <exception cref="DnaInvalidException">Thrown when dna chain is not valid</exception>
         /// <param name="human">Human being with a Dna chain</param>
         /// <returns>True if it's mutant; false if not.</returns>
-        public async Task<bool> IsMutantAsync(Human human)
+        public virtual async Task<bool> IsMutantAsync(Human human)
         {
             //pre-conditions
             if (human == null)
@@ -94,7 +94,7 @@ namespace ChallengeMeLiServices.Services
             return isMutant;
         }
 
-        public bool VerifyIsMutant(string[] dna)
+        public virtual bool VerifyIsMutant(string[] dna)
         {
             //I create my variables once here before the iterations
             string keyword, horizontal, vertical, diagonalRight, diagonalLeft;
@@ -131,7 +131,7 @@ namespace ChallengeMeLiServices.Services
         /// <exception cref="DnaInvalidException">Thrown when dna chain is not valid.</exception>
         /// <param name="dna">Dna chain.</param>
         /// <returns>True if dna is valid; ArgumentException if it's invalid.</returns>
-        public bool IsDnaValid(string[] dna)
+        public virtual bool IsDnaValid(string[] dna)
         {
             //dna cannot be null or empty
             if (dna == null || dna.Length == 0)
@@ -148,11 +148,6 @@ namespace ChallengeMeLiServices.Services
             }
 
             return true;
-        }
-
-        public static void ProcessColaIsMutant()
-        {
-
         }
 
         #region Auxiliar Methods

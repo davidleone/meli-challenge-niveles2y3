@@ -11,3 +11,4 @@ Repositorio exclusivo para los desafios 2 y 3 del challenge (REST API)
 - Npgsql => para conexión con Postgresql
 - MS.Ext.Caching.Memory => para cache en memoria
 - Moq => para UnitTests
+- OpenCover (extension) => code coverage de testing
