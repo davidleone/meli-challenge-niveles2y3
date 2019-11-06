@@ -36,7 +36,7 @@ namespace ChallengeMeLiServices.DataAccess
             return Fluently
                 .Configure()
                 .Database(PostgreSQLConfiguration.PostgreSQL82.ConnectionString(x => x
-                    .Host("database-1.cno6zl5xdzuy.sa-east-1.rds.amazonaws.com")
+                    .Host("aaywwm7tlbw572.cno6zl5xdzuy.sa-east-1.rds.amazonaws.com")
                     .Username("postgres")
                     .Password("Postgres2019!")
                     .Database("myDatabase")
