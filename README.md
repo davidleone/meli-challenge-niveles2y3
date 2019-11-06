@@ -28,11 +28,11 @@ Json de ejemplo a enviar en el Body: <br />
 { <br />
 "dna":["TTGCGA","CAGTAC","TTATGT","AGAAGG","CCTCTA","TCACTG"] <br />
 } <br />
-    Endpoint para consulta de si un adn es mutante o no, devuelve:
-        - __200 OK__: en caso que el adn corresponda a un mutante.
-		- __403 FORBIDDEN__: en caso que el adn corresponda a un humano.
-		- __400 BAD REQUEST__: en caso que el adn no sea válido (para serlo debe contener elementos y ser de NxN).
-		- __500 INTERNAL SERVER ERROR__: en caso que ocurra cualquier error inesperado.
+Endpoint para consulta de si un adn es mutante o no, devuelve:
+    - __200 OK__: en caso que el adn corresponda a un mutante.
+    - __403 FORBIDDEN__: en caso que el adn corresponda a un humano.
+    - __400 BAD REQUEST__: en caso que el adn no sea válido (para serlo debe contener elementos y ser de NxN).
+    - __500 INTERNAL SERVER ERROR__: en caso que ocurra cualquier error inesperado.
 
 - __GET__ http://prod.ywtpjv956u.sa-east-1.elasticbeanstalk.com/api/challenge-meli/v1/stats <br />
     Endpoint para consulta de estadísticas.
