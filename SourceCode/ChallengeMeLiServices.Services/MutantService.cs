@@ -94,8 +94,20 @@ namespace ChallengeMeLiServices.Services
             return isMutant;
         }
 
+        /// <summary>
+        /// Verify the dna chain in order to evaluate if is mutant or not.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when dna chain is null or empty</exception>
+        /// <param name="dna">Dna chain</param>
+        /// <returns>true: is mutant | false: is human</returns>
         public virtual bool VerifyIsMutant(string[] dna)
         {
+            //dna cannot be null or empty
+            if (dna == null || dna.Length == 0)
+            {
+                throw new ArgumentException("Dna cannot be null or empty!");
+            }
+
             //I create my variables once here before the iterations
             string keyword, horizontal, vertical, diagonalRight, diagonalLeft;
 
@@ -105,7 +117,7 @@ namespace ChallengeMeLiServices.Services
                 for (int col = 0; col < dna[row].Length; col++)
                 {
                     //I set the expected word to match
-                    keyword = new String(dna[row][col], k_QuantitySecuence).ToUpper();
+                    keyword = new string(dna[row][col], k_QuantitySecuence).ToUpper();
 
                     //I get the possible values in the different axis
                     horizontal = GetHorizontal(dna[row], col);
@@ -120,6 +132,7 @@ namespace ChallengeMeLiServices.Services
                     }
                 }
             }
+
             return false;
         }
 
@@ -141,7 +154,7 @@ namespace ChallengeMeLiServices.Services
             foreach (string line in dna)
             {
                 //dna cannot has nulls or empty strings as members, and it must be a NxN table, and it must only contains letters A,T,C,G
-                if (String.IsNullOrWhiteSpace(line) || line.Length != dna.Length || !line.All(x => k_ValidLetters.Contains(x)))
+                if (string.IsNullOrWhiteSpace(line) || line.Length != dna.Length || !line.All(x => k_ValidLetters.Contains(x)))
                 {
                     throw new DnaInvalidException();
                 }

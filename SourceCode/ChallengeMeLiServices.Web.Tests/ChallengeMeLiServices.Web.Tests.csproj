@@ -95,6 +95,7 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -105,6 +106,14 @@
     <Compile Include="Controllers\StatsV1ControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChallengeMeLiServices.DataAccess\ChallengeMeLiServices.DataAccess.csproj">
+      <Project>{B5460FE9-07EC-46DB-A772-56A00938DA53}</Project>
+      <Name>ChallengeMeLiServices.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChallengeMeLiServices.Services\ChallengeMeLiServices.Services.csproj">
+      <Project>{1CD3A288-279D-431E-AD83-C1C51483760E}</Project>
+      <Name>ChallengeMeLiServices.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChallengeMeLiServices.Web\ChallengeMeLiServices.Web.csproj">
       <Project>{9D703942-97A5-40E5-B976-0D2412AE8520}</Project>
       <Name>ChallengeMeLiServices.Web</Name>

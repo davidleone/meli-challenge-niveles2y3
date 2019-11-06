@@ -3,6 +3,11 @@ Repositorio exclusivo para los desafios 2 y 3 del challenge (REST API)
 
 <COMPLETAR!>
 
+## Mejoras:
+- Contemplar mensajes de error en caso de DNA inválido, tal como está hecho en el Desafío Nivel 1.
+- Agregar Logging de errores para facilitar trackeo de problemas.
+
+
 ## Notas:
 - Unity => inyección de dependencia
 - AutoMapper => mapeo entre DTO y Entity
@@ -11,4 +16,4 @@ Repositorio exclusivo para los desafios 2 y 3 del challenge (REST API)
 - Npgsql => para conexión con Postgresql
 - MS.Ext.Caching.Memory => para cache en memoria
 - Moq => para UnitTests
-- OpenCover (extension) => code coverage de testing
+- AxoCover (extension) => code coverage de testing
