@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.DataA
 		{B5460FE9-07EC-46DB-A772-56A00938DA53} = {B5460FE9-07EC-46DB-A772-56A00938DA53}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMeLiServices.Web.IntegrationTests", "ChallengeMeLiServices.Web.IntegrationTests\ChallengeMeLiServices.Web.IntegrationTests.csproj", "{05F62FDF-6133-403B-AE52-1F2E483FA2F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{3CC14060-7150-4517-AC7A-5108456EE801}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CC14060-7150-4517-AC7A-5108456EE801}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CC14060-7150-4517-AC7A-5108456EE801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F62FDF-6133-403B-AE52-1F2E483FA2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F62FDF-6133-403B-AE52-1F2E483FA2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F62FDF-6133-403B-AE52-1F2E483FA2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F62FDF-6133-403B-AE52-1F2E483FA2F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,6 +14,7 @@ namespace ChallengeMeLiServices.DataAccess.Tests.Repositories
     /// Test class for Dna Repository.
     /// </summary>
     [TestClass]
+    [TestCategory("Unit Tests")]
     public class DnaRepositoryTests
     {
         private Mock<IDnaDao> _dnaDaoMock;

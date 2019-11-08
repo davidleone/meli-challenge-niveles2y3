@@ -13,6 +13,7 @@ namespace ChallengeMeLiServices.Services.Tests
     /// Test class for DNA service.
     /// </summary>
     [TestClass]
+    [TestCategory("Unit Tests")]
     public class DnaServiceTests : ServiceTests
     {
         private Mock<IDnaRepository> _dnaRepositoryMock;

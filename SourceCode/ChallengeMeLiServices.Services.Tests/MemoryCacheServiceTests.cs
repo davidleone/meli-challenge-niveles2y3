@@ -8,6 +8,7 @@ namespace ChallengeMeLiServices.Services.Tests
     /// Test class for MemoryCache service.
     /// </summary>
     [TestClass]
+    [TestCategory("Unit Tests")]
     public class MemoryCacheServiceTests : ServiceTests
     {
         [TestInitialize]

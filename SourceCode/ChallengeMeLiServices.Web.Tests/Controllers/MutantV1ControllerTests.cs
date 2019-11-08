@@ -13,6 +13,7 @@ using Moq;
 namespace ChallengeMeLiServices.Web.Tests.Controllers
 {
     [TestClass]
+    [TestCategory("Unit Tests")]
     public class MutantV1ControllerTests
     {
         private Mock<IMutantService> _mutantServiceMock;

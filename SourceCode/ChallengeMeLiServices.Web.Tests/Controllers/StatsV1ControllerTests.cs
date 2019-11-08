@@ -9,6 +9,7 @@ using Moq;
 namespace ChallengeMeLiServices.Web.Tests.Controllers
 {
     [TestClass]
+    [TestCategory("Unit Tests")]
     public class StatsV1ControllerTests
     {
         private Mock<IStatsService> _statsServiceMock;

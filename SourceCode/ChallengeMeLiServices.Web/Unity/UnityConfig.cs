@@ -5,6 +5,7 @@ using ChallengeMeLiServices.DataAccess.Repositories.Interfaces;
 using ChallengeMeLiServices.Services;
 using ChallengeMeLiServices.Services.Interfaces;
 using Unity;
+using Unity.Resolution;
 
 namespace ChallengeMeLiServices.Web.Unity
 {
@@ -13,23 +14,27 @@ namespace ChallengeMeLiServices.Web.Unity
     /// </summary>
     public static class UnityConfig
     {
+        private static IUnityContainer _container;
+
         /// <summary>
         /// Gets the configured Unity container.
         /// </summary>
         /// <returns>The unity container</returns>
         public static IUnityContainer GetConfiguredContainer()
         {
-            var container = new UnityContainer();
-            try
+            if (_container == null)
             {
-                RegisterTypes(container);
+                _container = new UnityContainer();
+                RegisterTypes(_container);
             }
-            catch
-            {
-                container.Dispose();
-                throw;
-            }
-            return container;
+
+            return _container;
+        }
+
+        public static T Resolve<T>(params ResolverOverride[] overrides)
+        {
+            GetConfiguredContainer();
+            return _container.Resolve<T>(overrides);
         }
 
         /// <summary>Registers the type mappings with the Unity container.</summary>

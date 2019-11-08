@@ -47,7 +47,7 @@ namespace ChallengeMeLiServices.Services
             decimal ratio = mutants;
             if (humans > 0)
                 ratio /= humans;
-            Math.Round(ratio, 2);
+            ratio = Math.Round(ratio, 2);
 
             //finally, I return the results
             return new DnaStats()

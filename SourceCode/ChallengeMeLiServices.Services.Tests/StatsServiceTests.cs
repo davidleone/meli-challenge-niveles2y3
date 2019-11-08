@@ -11,6 +11,7 @@ namespace ChallengeMeLiServices.Services.Tests
     /// Test class for Stats service.
     /// </summary>
     [TestClass]
+    [TestCategory("Unit Tests")]
     public class StatsServiceTests : ServiceTests
     {
         private Mock<IDnaService> _dnaServiceMock;
