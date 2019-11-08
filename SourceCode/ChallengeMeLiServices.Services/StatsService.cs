@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using ChallengeMeLiServices.DataAccess.Models;
 using ChallengeMeLiServices.Services.Interfaces;
 
@@ -37,8 +38,6 @@ namespace ChallengeMeLiServices.Services
         public async Task<DnaStats> GetDnaStatsAsync()
         {
             //I made both calls in parallel, using memory cache
-            //Task<int> mutantsTask = _memoryCacheService.GetAsync("mutantsCount", async () => await _dnaService.GetMutantsCountAsync());
-            //Task<int> humansTask = _memoryCacheService.GetAsync("humansCount", async () => await _dnaService.GetHumansCountAsync());
             Task<int> mutantsTask = _memoryCacheService.GetAsync("mutantsCount", () => _dnaService.GetMutantsCountAsync());
             Task<int> humansTask = _memoryCacheService.GetAsync("humansCount", () => _dnaService.GetHumansCountAsync());
 
@@ -48,6 +47,7 @@ namespace ChallengeMeLiServices.Services
             decimal ratio = mutants;
             if (humans > 0)
                 ratio /= humans;
+            Math.Round(ratio, 2);
 
             //finally, I return the results
             return new DnaStats()

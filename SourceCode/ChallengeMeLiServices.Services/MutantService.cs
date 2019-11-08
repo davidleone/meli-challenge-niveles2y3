@@ -67,7 +67,6 @@ namespace ChallengeMeLiServices.Services
             {
                 string chainString = string.Join(",", dna);
 
-                //Dna savedDna = await _memoryCacheService.GetAsync(chainString, async () => await _dnaService.GetByChainAsync(dna));
                 Dna savedDna = await _memoryCacheService.GetAsync(chainString, () => _dnaService.GetByChainAsync(dna));
 
                 if (savedDna != null)
@@ -86,7 +85,6 @@ namespace ChallengeMeLiServices.Services
                         IsMutant = isMutant
                     };
 
-                    //TODO: grabar en segundo plano, sin esperar, y ademas manejar colas de procesos para grabar muchos a la vez
                     await MemoryCacheService.TriggerSaveActionAsync(dnaEnt, 1, (ICollection<Dna> dnas) => _dnaService.SaveAsync(dnas));
                 }
             }
