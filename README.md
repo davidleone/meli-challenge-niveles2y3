@@ -20,6 +20,9 @@ El microservicio está dividido en 3 proyectos principales, separando la impleme
 	
 A su vez cada proyecto tiene también su correspondiente proyecto de UnitTest.
 
+## Reporte de Code Coverage:
+[a relative link](CodeCoverage/index.html)
+
 ## Instrucciones de uso:
 Se pueden consultar 2 endpoints desde cualquier programa de envio de peticiones HTTP REST, por ej Postman.
 

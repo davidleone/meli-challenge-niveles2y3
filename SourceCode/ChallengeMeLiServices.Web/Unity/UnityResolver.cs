@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Http.Dependencies;
 using Unity;
 
@@ -8,6 +9,7 @@ namespace ChallengeMeLiServices.Web.Unity
     /// <summary>
     /// Resolves unity containers.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class UnityResolver : IDependencyResolver
     {
         /// <summary>

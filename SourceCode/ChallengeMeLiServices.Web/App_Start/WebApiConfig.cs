@@ -1,10 +1,12 @@
-﻿using System.Web.Http;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Web.Http;
 using ChallengeMeLiServices.Web.Unity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace ChallengeMeLiServices.Web
 {
+    [ExcludeFromCodeCoverage]
     public static class WebApiConfig
     {
         /// <summary>

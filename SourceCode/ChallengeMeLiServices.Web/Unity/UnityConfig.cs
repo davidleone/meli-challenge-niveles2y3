@@ -1,4 +1,5 @@
-﻿using ChallengeMeLiServices.DataAccess.Daos;
+﻿using System.Diagnostics.CodeAnalysis;
+using ChallengeMeLiServices.DataAccess.Daos;
 using ChallengeMeLiServices.DataAccess.Daos.Interfaces;
 using ChallengeMeLiServices.DataAccess.Repositories;
 using ChallengeMeLiServices.DataAccess.Repositories.Interfaces;
@@ -12,6 +13,7 @@ namespace ChallengeMeLiServices.Web.Unity
     /// <summary>
     /// Configures unity mappings
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public static class UnityConfig
     {
         private static IUnityContainer _container;
