@@ -21,7 +21,7 @@ El microservicio está dividido en 3 proyectos principales, separando la impleme
 A su vez cada proyecto tiene también su correspondiente proyecto de UnitTest.
 
 ## Reporte de Code Coverage:
-![Code Coverage](CodeCoverage/coverage.png)
+![Code Coverage](CodeCoverage/coverage.png) <br />
 O bien, para obtener el reporte detallado se puede descargar la carpeta "CodeCoverage" en este repo, y abrir el fichero "index.html"
 
 
