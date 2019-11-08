@@ -40,8 +40,6 @@ namespace ChallengeMeLiServices.Web.Controllers
         {
             HttpResponseMessage response = new HttpResponseMessage();
 
-
-            //TODO: AGREGAR LOGGER!!
             try
             {
                 Human human = _autoMapper.Map<Human>(humanDto);
@@ -58,10 +56,13 @@ namespace ChallengeMeLiServices.Web.Controllers
             catch (ArgumentException)
             {
                 response.StatusCode = HttpStatusCode.BadRequest;
+                //TODO: add some message with the wrong validation.
+                //TODO: log the exception.
             }
             catch (Exception)
             {
                 response.StatusCode = HttpStatusCode.InternalServerError;
+                //TODO: log the exception.
             }
             return response;
         }

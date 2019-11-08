@@ -4,12 +4,18 @@ using NHibernate;
 
 namespace ChallengeMeLiServices.Services.Tests
 {
+    /// <summary>
+    /// Abstract class to hold the session mock stuff.
+    /// </summary>
     public abstract class ServiceTests
     {
         protected Mock<ISessionFactory> _sessionFactoryMock;
         protected Mock<ISession> _sessionMock;
         protected Mock<ITransaction> _transactionMock;
 
+        /// <summary>
+        /// Mocks the session stuff.
+        /// </summary>
         protected void MockSessionManager()
         {
             _sessionFactoryMock = new Mock<ISessionFactory>();

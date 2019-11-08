@@ -13,7 +13,7 @@ namespace ChallengeMeLiServices.Web.Unity
         /// <summary>
         /// The Unity Container.
         /// </summary>
-        private IUnityContainer container;
+        private IUnityContainer _container;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnityResolver"/> class.
@@ -23,10 +23,8 @@ namespace ChallengeMeLiServices.Web.Unity
         public UnityResolver(IUnityContainer container)
         {
             if (container == null)
-            {
-                throw new ArgumentNullException("container");
-            }
-            this.container = container;
+                throw new ArgumentNullException(nameof(container));
+            _container = container;
         }
 
         /// <summary>
@@ -38,7 +36,7 @@ namespace ChallengeMeLiServices.Web.Unity
         {
             try
             {
-                return container.Resolve(serviceType);
+                return _container.Resolve(serviceType);
             }
             catch (ResolutionFailedException)
             {
@@ -55,7 +53,7 @@ namespace ChallengeMeLiServices.Web.Unity
         {
             try
             {
-                return container.ResolveAll(serviceType);
+                return _container.ResolveAll(serviceType);
             }
             catch (ResolutionFailedException)
             {
@@ -69,7 +67,7 @@ namespace ChallengeMeLiServices.Web.Unity
         /// <returns>the started scope</returns>
         public IDependencyScope BeginScope()
         {
-            IUnityContainer child = container.CreateChildContainer();
+            IUnityContainer child = _container.CreateChildContainer();
             return new UnityResolver(child);
         }
 
@@ -78,7 +76,27 @@ namespace ChallengeMeLiServices.Web.Unity
         /// </summary>
         public void Dispose()
         {
-            container.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Dispose of unmanaged resources.
+        /// </summary>
+        /// <param name="disposing">true for clean up managed resources</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // free managed resources
+                if (_container != null)
+                {
+                    _container.Dispose();
+                    _container = null;
+                }
+            }
+
+            // free native resources if there are any.
         }
     }
 }

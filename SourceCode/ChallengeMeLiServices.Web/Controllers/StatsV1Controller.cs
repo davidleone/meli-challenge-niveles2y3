@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using ChallengeMeLiServices.DataAccess.Models;
@@ -34,9 +35,17 @@ namespace ChallengeMeLiServices.Web.Controllers
         [HttpGet, Route]
         public async Task<DnaStatsV1Dto> GetDnaStatsAsync()
         {
-            DnaStats dnaStats = await _statsService.GetDnaStatsAsync();
-            DnaStatsV1Dto dnaStatsDto = _autoMapper.Map<DnaStatsV1Dto>(dnaStats);
-            return dnaStatsDto;
+            try
+            {
+                DnaStats dnaStats = await _statsService.GetDnaStatsAsync();
+                DnaStatsV1Dto dnaStatsDto = _autoMapper.Map<DnaStatsV1Dto>(dnaStats);
+                return dnaStatsDto;
+            }
+            catch (Exception ex)
+            {
+                //TODO: log exception
+                throw ex;
+            }
         }
     }
 }

@@ -51,68 +51,11 @@ namespace ChallengeMeLiServices.Services
             });
         }
 
-        /*/// <summary>
-        /// Save the already verified DNA, at this point we assume that DNA is valid.
+        /// <summary>
+        /// Saves in the database a bunch of DNAs.
         /// </summary>
-        /// <param name="chain">Dna chain</param>
-        /// <param name="isMutant">true: is Mutant | false: is Human</param>
+        /// <param name="dnas">Collection of DNAs to save</param>
         /// <returns>void</returns>
-        public async Task SaveVerifiedDnaAsync(string[] chain, bool isMutant)
-        {
-            if (chain == null || chain.Length == 0)
-            {
-                throw new ArgumentException("Chain cannot be null or empty");
-            }
-
-            Dna dnaToSave = new Dna()
-            {
-                ChainString = string.Join(",", chain),
-                IsMutant = isMutant
-            };
-
-            await Task.Run(() =>
-            {
-                using (ISession session = SessionManager.GetSession())
-                {
-                    using (ITransaction tx = session.BeginTransaction())
-                    {
-                        //I need to check it again in the transaction to cover concurrency issues
-                        Dna savedDna =  _dnaRepository.GetByChainString(session, dnaToSave.ChainString);
-                        if (savedDna == null)
-                        {
-                            _dnaRepository.Save(session, dnaToSave);
-                        }
-                        tx.Commit();
-                    }
-                }
-            });
-        }*/
-
-        /*public async Task SaveAsync(Dna dna)
-        {
-            if (dna == null)
-            {
-                throw new ArgumentException("DNA cannot be null");
-            }
-
-            await Task.Run(() =>
-            {
-                using (ISession session = SessionManager.GetSession())
-                {
-                    using (ITransaction tx = session.BeginTransaction())
-                    {
-                        //I need to check it again in the transaction to cover concurrency issues
-                        Dna savedDna = _dnaRepository.GetByChainString(session, dna.ChainString);
-                        if (savedDna == null)
-                        {
-                            _dnaRepository.Save(session, dna);
-                        }
-                        tx.Commit();
-                    }
-                }
-            });
-        }*/
-
         public async Task SaveAsync(ICollection<Dna> dnas)
         {
             if (dnas == null)

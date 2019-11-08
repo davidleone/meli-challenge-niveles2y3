@@ -9,6 +9,9 @@ using Moq;
 
 namespace ChallengeMeLiServices.Services.Tests
 {
+    /// <summary>
+    /// Test class for Mutant service
+    /// </summary>
     [TestClass]
     public class MutantServiceTests : ServiceTests
     {

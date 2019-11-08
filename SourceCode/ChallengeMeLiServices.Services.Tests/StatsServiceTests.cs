@@ -7,6 +7,9 @@ using Moq;
 
 namespace ChallengeMeLiServices.Services.Tests
 {
+    /// <summary>
+    /// Test class for Stats service.
+    /// </summary>
     [TestClass]
     public class StatsServiceTests : ServiceTests
     {

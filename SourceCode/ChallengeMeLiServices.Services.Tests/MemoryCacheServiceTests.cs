@@ -4,6 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ChallengeMeLiServices.Services.Tests
 {
+    /// <summary>
+    /// Test class for MemoryCache service.
+    /// </summary>
     [TestClass]
     public class MemoryCacheServiceTests : ServiceTests
     {

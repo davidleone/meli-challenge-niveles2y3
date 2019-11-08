@@ -9,6 +9,9 @@ using NHibernate;
 
 namespace ChallengeMeLiServices.Services.Tests
 {
+    /// <summary>
+    /// Test class for DNA service.
+    /// </summary>
     [TestClass]
     public class DnaServiceTests : ServiceTests
     {

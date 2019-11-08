@@ -10,6 +10,9 @@ using NHibernate;
 
 namespace ChallengeMeLiServices.DataAccess.Tests.Repositories
 {
+    /// <summary>
+    /// Test class for Dna Repository.
+    /// </summary>
     [TestClass]
     public class DnaRepositoryTests
     {

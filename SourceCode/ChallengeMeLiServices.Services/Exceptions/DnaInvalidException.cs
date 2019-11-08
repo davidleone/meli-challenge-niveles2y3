@@ -5,6 +5,7 @@ namespace ChallengeMeLiServices.Services.Exceptions
     /// <summary>
     /// The exception that is thrown when the dna chain provided to a method is not valid.
     /// </summary>
+    [Serializable]
     public class DnaInvalidException : ArgumentException
     {
         /// <summary>
